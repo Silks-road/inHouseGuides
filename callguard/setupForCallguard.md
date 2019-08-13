@@ -50,7 +50,7 @@ First SSH into the company Dev servers, type in your credentials, and move into 
     password: **********
     cd /srv/share/sites/ada.lovelace/callguardProjects
 
-#### Naming conventions
+#### Naming conventions & paths
 
 Once in your Sandbox, create an _appropriately named_ directory for your locally forked project.
 
@@ -79,56 +79,34 @@ Feature branches can be named as you deem appropriate so long as they stay relev
   git checkout feature/callguard-panel-update
 ```
 
+#### Assets folder
 
-This includes making an assets folder if need be - you import or copy this from a previous project PROVIDED you make sure the path is correct i.e:
-    mkdir / cp assets
-       path: /sites/ada.lovelace/testFolder/callguard-panel/httpdocs/assets/css..etc
+Check if your local repo has imported an assets folder. It is usually found in the httpdocs directory: `callguard-panel/httpdocs/assets`, containing images, css files etc.
 
-Delete ALL the the “.idea” folder/s within your local copy - you can do this through your terminal
+Some projects depending on their age, may not have one and you will therefore need to either import or copy an assets folder from a previous project you've worked on, or from another online CGH repo.
 
-    make sure you are in the root of your project in your local sandbox:
-    ls -a
-    rm -rf .idea
+#### Cleanup & copy
 
-now go to vhost folder now within said project:
+Delete ALL the the `.idea` folders and files within your local copy, and check for any remnant of `.svn` files within:
+
+`rm -rf .idea svn`
+
+Now go to `vhost` folder within said project, and make a copy of the vhost file **WITHOUT the extention**, including all content:
 
     cd vhost
-
-Make a copy of the vhost file WITHOUT the extention, and copy all the content over:
-
+    pwd ...clothing-line/callguard-panel/vhost
     cp vhost.conf.install vhost.conf
 
-Do the same again in conf (one folder up/ main folder) for BOTH config & syndication!:
+Do the same again in your `conf` folder for both you config & syndication files, again with file extensions removed:
+
+>**NOTE**: You may on occasion come across an “export” folder, with an “export.xml.install” file within... For the most part you can ignore this, but it is best to double check... Normally you would find this folder and file in the IVR section of the CGH projects, instead of the Panel; but if the IVR is configurable then you would find it in the Panel conf folder as well. On occasions it is also found in the API and Web versions depending on the client and situation. For more info search for export module and ETL in the docs or follow this [link](https://wiki.eckoh.com/export-module/)
 
     cd ../conf/
     cp config.xml.install config.xml
     cp syndication.xml.install syndication.xml
 
-NOTE: You may on occasion find an “export” folder, with an “export.xml.install” file within.
-For the most part you can ignore this, but it is best to double check!!! Normally you would find this folder/ file in the IVR section of the project instead of the Panel; but if the IVR is configurable then you would find it in the Panel conf folder as well. On occasions it is also found in the API and Web versions depending on the client and situation. For more info search for export module and ETL in the docs or follow this link: https://wiki.eckoh.com/export-module/
+Print your file path and copy the path displayed and SAVE it - you will need it for updating the config in the next section
 
-Go to the root folder of your CURRENT directory (callguard-panel):
-
-    cd ../
-    pwd
-        /srv/share/sites/ada.lovelace/testFolder/callguard-panel
-
-You MIGHT need to make an assets folder in the ROOT of your directory if necessary - check to confirm as it may already be set up in the vhost/vhost.conf file - look for
-
- Alias   /assets     /srv/share/folder/give/me/assets/
-
-It should be in the top half of the file just before the <Location /> tag:
-
-    cd /srv/share/sites/ada.lovelace/testFolder/callguard-panel
-    mkdir assets
-
-Go to a previous project and grab the assets and subfolders from there
-
-    copy/ paste
-
-Print your file path and copy the path displayed and SAVE it!!! - you need it for the next bit:
-
-    pwd
-    /srv/share/sites/ada.lovelace/testFolder/callguard-panel
+`pwd /srv/share/sites/ada.lovelace/callguardProjects/clothing-line/callguard-panel`
 
 /////////////////////////////////////////////////////////////////////////////////////////
