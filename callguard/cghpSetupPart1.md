@@ -10,7 +10,7 @@ Part 1 covers the following:
 
 - Config file
 
-##Prerequisites & System Requirements
+## Prerequisites & System Requirements
 
 Due to company wide PCI compliance standard procedures, please make sure you first have all the pre-approved company security software installed, and VPN access routes on your computer. This should have been part of your standard set up and induction upon first joining Eckoh. If you are unsure your computer meets full compliance standards, please see a member of the Network Security department before going any further.
 
@@ -24,7 +24,7 @@ Regarding the CG project specifically, this should include access to the followi
 * Account access to the Holly Management System.
 * General understanding of JS, XML, PHP and GitHub.
 
-##Import & local setup
+## Import & local setup
 
 Once you have the go ahead from your Project Manager please begin as follows:
 
@@ -37,7 +37,7 @@ Following this please SSH into the company Dev servers, type in your credentials
     password: **********
     cd /srv/share/sites/ada.lovelace/callguardProjects
 
-####Naming conventions & paths
+#### Naming conventions & paths
 
 Once in your Sandbox, create an _appropriately named_ directory for your soon to be forked project.
 
@@ -167,8 +167,8 @@ Your location tags should end up look something like this:
     <CLIENT-##>
       ...
       	<assets>
-    			<location>/srv/share/sites/shopping-channel/clothing-line-cgh-panel.1-3-8.eckoh.com/assets/</location>
-			  </assets>
+    	  <location>/srv/share/sites/shopping-channel/clothing-line-cgh-panel.1-3-8.eckoh.com/assets/</location>
+	</assets>
       ...
     </CLIENT-##>
   </SIT>  
