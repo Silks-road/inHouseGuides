@@ -80,7 +80,7 @@ Delete ALL the `.idea` folders and files within your local copy, and check for a
 
 >**NOTE**: You may on occasion come across an “export” folder, with an “export.xml.install” file within... For the most part you can ignore this, but it is best to double check... Normally you would find this folder and file in the IVR section of the CGH projects, instead of the Panel. However if the IVR is configurable then you would find it in the Panel conf folder as well. On occasions it is also found in the API and Web versions depending on the client and situation. For more info search for export module and ETL in the company [Wiki](https://wiki.eckoh.com/export-module/).
 
-##Config file
+## Config file
 
 Print your working directory root pathway, and SAVE it - you will need this information for the next section.
 
