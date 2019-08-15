@@ -2,13 +2,11 @@
 
 The following is a project environment setup and installation guide, for developerss who are unfamiliar with Eckoh's **Callguard Hosted Panel** (CGH) project.
 
-Part 1 covers the following:
+**CGHP Part 1** covers setup for the following:
 
-- Prerequisites & System Requirements
-
-- Import & local setup
-
-- Config file
+1. Prerequisites & System Requirements
+2. Import & local setup
+3. Config.xml.install
 
 ## Prerequisites & System Requirements
 
@@ -16,15 +14,15 @@ Due to company wide PCI compliance standard procedures, please make sure you fir
 
 Regarding the CG project specifically, this should include access to the following:
 
-* The DEV and UAT databases.
+- The DEV and UAT databases.
+  - *While MySQL is the preferred in-house database management system, it is not a prerequisite as such and you may use another compatible tool should you so wish.*
+- VPN access to your departments relevant company servers.
+- Account access to the Mande servers project.
+- Account access to the Holly Management System.
+- General understanding of JS, XML, PHP and GitHub.
 
-    * _While [MySQL](https://www.mysql.com/) is the preferred in-house database management system, it is not a prerequisite as such and you may use another compatible tool should you so wish._
-* VPN access to your departments relevant company servers.
-* Account access to the Mande servers project.
-* Account access to the Holly Management System.
-* General understanding of JS, XML, PHP and GitHub.
-
-## Import & local setup
+### Import & local setup
+---
 
 Once you have the go ahead from your Project Manager please begin as follows:
 
@@ -80,13 +78,11 @@ Delete ALL the `.idea` folders and files within your local copy, and check for a
 
 >**NOTE**: You may on occasion come across an “export” folder, with an “export.xml.install” file within... For the most part you can ignore this, but it is best to double check... Normally you would find this folder and file in the IVR section of the CGH projects, instead of the Panel. However if the IVR is configurable then you would find it in the Panel conf folder as well. On occasions it is also found in the API and Web versions depending on the client and situation. For more info search for export module and ETL in the company [Wiki](https://wiki.eckoh.com/export-module/).
 
-## Config file
 
-Print your working directory root pathway, and SAVE it - you will need this information for the next section.
+### Config.xml.install
+---
 
-`pwd /srv/share/sites/ada.lovelace/callguardProjects/clothing-line/callguard-panel`
-
-Open your text editor and open your `conf.xml.install` file.
+Open your text editor and go to your `conf.xml.install` file.
 
 #### Client No. & Service ID tags
 
@@ -96,7 +92,7 @@ Access the Dev database and locate both your relevant **Client Number** and **Se
 
 Once you have your client number (and service ID), locate all the `<CLIENT-##>` tags within this file. They will either already have the relevant client number attached, or have the Dev Database test number (21). Update as appropriate.
 
-```xml
+```
   </CLIENT-21> <!-- used only for setup: REMOVE &/ REPLACE as appropriate for project —>
 ```
 
@@ -116,7 +112,7 @@ This includes updating the `</CLIENT-##>` tags within the `<UAT>` and `<PROD>` s
 
 Repeat this process for the service ID tags:
 
-```xml
+```php
   </SERVICE-ID-21> <!-- used only for setup: REMOVE &/ REPLACE as appropriate for project —>
 ```
 
@@ -167,8 +163,8 @@ Your location tags should end up look something like this:
     <CLIENT-##>
       ...
       	<assets>
-    	  <location>/srv/share/sites/shopping-channel/clothing-line-cgh-panel.1-3-8.eckoh.com/assets/</location>
-	</assets>
+    			<location>/srv/share/sites/shopping-channel/clothing-line-cgh-panel.1-3-8.eckoh.com/assets/</location>
+			  </assets>
       ...
     </CLIENT-##>
   </SIT>  
@@ -191,6 +187,15 @@ Check that the  `css` tags are set to `default`.
 
 Remove all instances of query strings/ question marks from the validation fields i.e. ``}?$ = }$`` as they are no longer relevant to the CGH verification tokens.
 
+#### Logging
+
+Print your working directory root pathway, and create then create a log directory to hold said project logs:
+
+```git
+pwd /srv/share/sites/ada.lovelace/callguardProjects/clothing-line/callguard-panel
+mkdir /srv/share/service_files/clothing-line/callguard-panel/logs
+```
+
 #### Config.xml
 
 Once this is completed, make a copy of the `conf.xml.install` file **WITHOUT the extention**, including all content:
@@ -207,25 +212,8 @@ While you are here make sure you check and update the`location` tags within `ass
   </assets>
 ```
 
-#### Logging
-
-Create a log directory to hold your project logs:
-
-`mkdir /srv/share/service_files/clothing-line/callguard-panel/logs`
-
-Copy the folder path to **BOTH** your `config.xml` and `config.xml.install` files in `<logpath>` tags:
-
-```xml
-<logPath>/srv/share/service_files/clothing-line/callguard-panel/logs</logPath>
-```
 
 
+------
 
----
-
-
-
-[CGH Setup P.2](linktopart2)
-
-
-
+[CGHP: Part 2](https://github.com/Silks-road/inHouseGuides/blob/master/callguard/linktopart2)

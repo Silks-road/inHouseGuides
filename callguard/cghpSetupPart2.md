@@ -2,125 +2,98 @@
 
 The following is a project environment setup and installation guide, for developerss who are unfamiliar with Eckoh's **Callguard Hosted Panel** (CGH) project.
 
-Part 2 covers the following:
+**CGHP Part 2** covers setup for the following:
 
-- Syndication file
+1. Syndication.xml.install
+2. Vhost.conf.install
+3. Vhost.conf
 
-- Something
+Do not proceed unless you have already completed [CGHP: Part 1](deadlink)
 
-- Something
-
-Do not proceed unless you have already completed CGH: [Part 1](deadlink) 
-
-### Syndication file
+### Syndication.xml.install
 
 ------
 
+#### Syndication.xml
 
-
-
-
-
-
-
-
-Go to your syndication.xml file NOT the install
-
-Add your domain names to the <CLIENT-**></CLIENT-**> tags - MAKE SURE the client numbers are correct!!! to co-inside with the client number allocated in the database (in this case 44) CHECK THIS IN SEQUELPRO DB!!!!!!!
-AND that you have a domain with the VERSION number in it
+Make a copy of the `syndication.xml.install` file **WITHOUT the extention**, including all content:
 
 ```
+cp syndiaction.xml.install syndiaction.xml
+```
+
+#### Client No. & Service ID tags
+
+Open your text editor and go to your `syndication.xml.install` file.
+
+Within the `<DEV>` section, take your relevant **Client Number** and **Service ID** from your `config.xml` file and repleat the process of updating the `<CLIENT-##>` tags throughout this file:
+
+> **NOTE**: If you are unsure about this process, see [CGHP: Part 1](linktocghpart1) - Config file: Client No. & Service ID tags. the same RFC rules apply.
+
+#### Creating test URLs
+
+WIthin your `<CLIENT-##>` tags, you should see `<domain>` tags.
+
+Your `<domain>` tags are where you add your project URL. Create a test domain name that is relevant to the client and project at hand, while in keeping with the Eckoh company [naming conventions guide](deadlink).
+
+**Make sure to adhere to the following**:
+
+- You have a minimum of at least two test URLs:
+  - The first specifiys the client project name.
+  - The second includes the client project name, _plus_ the current version number.
+  - The version number _must_ come before the client project name.
+- At least one domain must have { .54.dev.eckoh } in the URL.
+- At least one domain must have { .dev-secweb.eckoh } in the URL.
+- Only use the { .com } domain suffix.
+- Use { _ } and { - } as seperators.
+
+> **NOTE**: _DO NOT USE dot notation carelessly_ when creating your test URLs. All " . " seperation in Mande URLs are representative of subfolders, and as a result the Eckoh servers sometimes struggle with their interpretation.
+
+The end product should be similar to the example given below:
+
+```xml
 <DEV>
-    <!-- </CLIENT-update> --> <!-- uncomment this tag at setup -->
-    <CLIENT-21><!-- used only for setup: REMOVE and REPLACE with ABOVE, update as appropriate for project -->
-        <!-- Test WebPanel -->
-        <domain>update-project-name.54.dev.eckoh.com</domain>
-        <domain>update-version-number.54.dev.eckoh.com</domain>
-    <!-- </CLIENT-update> --> <!-- uncomment this tag at setup -->
-    <CLIENT-21><!-- used only for setup: REMOVE and REPLACE with ABOVE, update as appropriate for project -->
+  <CLIENT-44>
+  	<!-- Test WebPanel -->
+  	<domain>clothing-line-cgh-panel.54.dev.eckoh.com</domain>
+  	<domain>clothing-line-cgh-panel.54.dev-secweb.eckoh.com</domain>
+    <domain>1-3-8.clothing-line-cgh-panel.54.dev.eckoh.com</domain>
+    <domain>1-3-8.clothing-line-cgh-panel.54.dev-secweb.eckoh.com</domain>
+	</CLIENT-44>
 </DEV>
 ```
 
-DO NOT USE ‘.’ easily!!! - they represent subfolders in urls and eckoh servers sometimes struggle with interpretation, but ‘_’ / ‘-‘ are fine
-ONLY USE .com
-INCLUDE “.54.dev.eckoh” at the end
-So in the end you should get something like:
+Copy and paste the `<domain>` names/ tags into both the `<UAT>` and `<PROD>` sections, _but make sure to update the domain name suffixes, to keep each domain section relevant_.
 
-```
-<DEV>
-    </CLIENT-44><!-- uncomment this tag at setup -->
-        <!-- Test WebPanel -->
-        <domain>example-project.54.dev.eckoh.com</domain>
-        <domain>update-version-number.54.dev.eckoh.com</domain>
-    </CLIENT-44><!-- uncomment this tag at setup -->
-</DEV>
-```
+You will notice that the `<PROD>` tags have extended to include `<PROD_IX>` and `<PROD_SA>`. If there are only `<PROD>` tags available, update them to `<PROD_IX>` and `<PROD_SA>` tags.
 
-Copy and paste Client and Domain tags into UAT and Prod/Prod_ix/Prod_sa sections as appropriate - make sure you place “UPDATE”’s in the relevant sections for your RFC later!
+**Make sure to adhere to the following**:
 
-```
+- UAT end suffixes are UAT specific: { .uat.eckoh }
+- PROD domain names are PROD _type_ specific:
+  - `<PROD_IX>` : { .eckoh }
+  - `<PROD_SA>` : { .production.eckoh }
+  - Neither PROD sections need their version numbers included.
+
+```xml
 <UAT>
-</UAT>
-
+	<CLIENT-44>
+  	<!-- Test WebPanel -->
+    <domain>clothing-line-cgh-panel.uat.eckoh.com</domain>
+    <domain>1-3-8.clothing-line-cgh-panel.uat.eckoh.com</domain>
+	...
 <PROD_IX>
-</PROD_IX>
-
+  <CLIENT-44>
+  	<domain>clothing-line-cgh-panel.eckoh.com</domain>
+	...
 <PROD_SA>
-</PROD_SA>
+  <CLIENT-44>
+    <domain>clothing-line-cgh-panel.production.eckoh.com</domain>
+	...
 ```
 
-BECOMES:
+All your domain name updates must be be included in your RFC.
 
-<UAT>
-        <CLIENT-update>
-            <!-- Test WebPanel -->
-            <domain>update</domain>
-            <domain>update</domain>
-        </CLIENT-update>
-    </UAT>
+> **NOTE**: While PROD_SA is not in use currently, it is good practice to include/ create this section in order to make your panels future proof.
 
-etc etc…
-
-<?xml version="1.0" encoding="UTF-8"?>
-<syndications>
-<DEV>
-    <!-- </CLIENT-update> --> <!-- uncomment this tag at setup -->
-    <CLIENT-21><!-- used only for setup: REMOVE and REPLACE with ABOVE, update as appropriate for project -->
-        <!-- Test WebPanel -->
-        <domain>update-project-name.dev-secweb.eckoh.com</domain>
-        <domain>update-version-number-update-project-name.dev-secweb.eckoh.com</domain>
-    <!-- </CLIENT-update> --> <!-- uncomment this tag at setup -->
-    <CLIENT-21><!-- used only for setup: REMOVE and REPLACE with ABOVE, update as appropriate for project -->
-</DEV>
-<UAT>
-    <CLIENT-update>
-        <!-- Test WebPanel -->
-        <domain>update-project-name.uat.eckoh.com</domain>
-        <domain>update-version-number-update-project-name.uat.eckoh.com</domain>
-    </CLIENT-update>
-</UAT>
-<PROD_IX>
-    <CLIENT-update>
-        <domain>update-project-name.eckoh.com</domain>
-        <domain>update-version-number-update-project-name.eckoh.com</domain>
-    </CLIENT-update>
-</PROD_IX>
-<PROD_SA>
-    <CLIENT-update>
-        <domain>update-project-name.production.eckoh.com</domain>
-        <domain>update-version-number-update-project-name.production.eckoh.com</domain>
-    </CLIENT-update>
-</PROD_SA>/
-
-////////// syndication.xml
-
-////////// syndication.xml.install
-
-Copy over the below - make sure you UPDATE the CLIENT ID AND the actual DOMAIN NAME to what you used in the syndication.xml file previously
-
-</syndications>
-
-while PROD_SA is not in use atm it is good to make your panels “future” ready
-
-////////// syndication.xml.install
-
+## vhost.conf.install
