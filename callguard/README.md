@@ -10,9 +10,9 @@ As such, should you simply wish to be reminded of the most basic installation re
 
 
 
-##The Callguard Hosted project overview
+## The Callguard Hosted project overview
 
-###Understanding CGH
+### Understanding CGH
 
 CGH is an Eckoh product which has been designed to remove all (or part of) company contact centres from the annual scope of the PCI DSS audit process – which in turn simplifies the compliance burden itself for the company in question. It is available in Web, IVR, and Panel format (the latter of which this article focuses on).
 
