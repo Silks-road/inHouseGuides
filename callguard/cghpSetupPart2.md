@@ -97,3 +97,9 @@ All your domain name updates must be be included in your RFC.
 > **NOTE**: While PROD_SA is not in use currently, it is good practice to include/ create this section in order to make your panels future proof.
 
 ## vhost.conf.install
+
+Make a copy of the `vhost.conf.install` file **WITHOUT the extention**, including all content:
+
+```
+cp vhost.conf.install vhost.conf
+```
